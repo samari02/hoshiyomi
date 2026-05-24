@@ -1,6 +1,6 @@
 export const site = {
   name: "星とあなたの物語",
-  tagline: "Avec 七海",
+  tagline: "With Nanami",
   description:
     "タロット・西洋占星術・数秘術で、あなたらしい未来への道しるべをお届けします。",
 } as const;
@@ -38,15 +38,8 @@ export const services = {
       description:
         "カードが映し出す、今の心と近い未来。恋愛・仕事・人間関係など、お悩みに合わせて鑑定します。",
       price: "3,000円〜",
-      emoji: "🃏",
-    },
-    {
-      id: "numerology",
-      title: "数秘術",
-      description:
-        "生年月日から導き出すライフパス。あなたの本質・才能・今年のテーマをやさしく読み解きます。",
-      price: "4,500円〜",
-      emoji: "🔢",
+      image: "/tarot.png",
+      imageAlt: "タロットカードのイラスト",
     },
     {
       id: "horoscope",
@@ -54,15 +47,8 @@ export const services = {
       description:
         "出生チャートから性格傾向と運命の流れを分析。太陽・月・上昇星座を中心にご説明します。",
       price: "5,000円〜",
-      emoji: "♈",
-    },
-    {
-      id: "love",
-      title: "恋愛運鑑定",
-      description:
-        "相性・復縁・片思い…恋の迷いに寄り添う鑑定。相手の気持ちと、あなたが取るべき一歩を照らします。",
-      price: "3,500円〜",
-      emoji: "💫",
+      image: "/Horoscop.png",
+      imageAlt: "ホロスコープのイラスト",
     },
   ],
 } as const;
@@ -105,6 +91,8 @@ export const testimonials = {
       quote:
         "恋愛の悩みで伺いましたが、相手の気持ちだけでなく、私が大切にすべきことまで教えてもらえました。",
       rating: 5,
+      image: "/customer1.png",
+      imageAlt: "30代女性のお客様イラスト",
     },
     {
       profile: "40代・女性",

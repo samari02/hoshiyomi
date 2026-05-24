@@ -13,7 +13,7 @@ export function SiteHeader() {
             <p className="font-serif text-base font-semibold leading-tight tracking-wide text-foreground md:text-lg">
               {site.name}
             </p>
-            <p className="text-[10px] tracking-widest text-muted uppercase">
+            <p className="text-xs tracking-wide text-muted md:text-sm">
               {site.tagline}
             </p>
           </div>

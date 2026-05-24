@@ -1,13 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/content/home";
 import { SectionHeading } from "@/components/ui/StarDecor";
-
-const accentColors = [
-  "from-rose-light to-lavender-light",
-  "from-lavender-light to-sky/30",
-  "from-sky/30 to-gold-light",
-  "from-gold-light to-rose-light",
-];
 
 export function ServiceMenuSection() {
   return (
@@ -17,20 +11,24 @@ export function ServiceMenuSection() {
       <div className="relative mx-auto max-w-6xl">
         <SectionHeading>{services.heading}</SectionHeading>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.items.map((item, index) => (
+        <div className="mx-auto flex max-w-4xl flex-col items-stretch justify-center gap-8 sm:flex-row sm:gap-10">
+          {services.items.map((item) => (
             <article
               key={item.id}
-              className="card-soft group flex flex-col transition-shadow hover:shadow-md hover:shadow-lavender/20"
+              className="card-soft group flex min-h-[420px] flex-1 flex-col items-center px-5 py-6 text-center transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-rose/25 hover:shadow-lg hover:shadow-lavender/25 motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:min-h-[440px] md:px-6 md:py-8"
             >
-              <div
-                className={`mb-4 flex h-28 items-center justify-center rounded-xl bg-gradient-to-br ${accentColors[index % accentColors.length]}`}
-              >
-                <span className="text-4xl" role="img" aria-hidden>
-                  {item.emoji}
-                </span>
+              <div className="flex min-h-[160px] w-full flex-1 items-center justify-center md:min-h-[180px]">
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt}
+                  width={1254}
+                  height={1254}
+                  unoptimized
+                  className="h-36 w-auto max-h-[180px] object-contain transition-transform duration-300 ease-out group-hover:scale-105 motion-reduce:group-hover:scale-100 md:h-40"
+                  sizes="(max-width: 640px) 80vw, 320px"
+                />
               </div>
-              <h3 className="font-serif text-lg font-semibold text-foreground">
+              <h3 className="font-serif text-lg font-semibold text-foreground transition-colors duration-300 group-hover:text-rose-dark md:text-xl">
                 {item.title}
               </h3>
               <p className="mt-2 flex-1 text-sm leading-7 text-muted">
@@ -39,7 +37,7 @@ export function ServiceMenuSection() {
               <p className="mt-4 font-medium text-rose-dark">{item.price}</p>
               <Link
                 href={`#${item.id}`}
-                className="btn-outline mt-4 w-full text-center"
+                className="btn-outline mt-5 w-full max-w-xs text-center transition-all duration-300 group-hover:border-rose group-hover:bg-rose-light group-hover:shadow-sm"
               >
                 詳しく見る
               </Link>

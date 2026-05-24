@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { testimonials } from "@/content/home";
 import { SectionHeading } from "@/components/ui/StarDecor";
 
@@ -10,6 +11,28 @@ function AvatarPlaceholder({ index }: { index: number }) {
       aria-hidden
     >
       ✧
+    </div>
+  );
+}
+
+function TestimonialAvatar({
+  image,
+  imageAlt,
+}: {
+  image: string;
+  imageAlt: string;
+}) {
+  return (
+    <div className="mx-auto flex h-28 w-full items-center justify-center md:h-32">
+      <Image
+        src={image}
+        alt={imageAlt}
+        width={1822}
+        height={1278}
+        unoptimized
+        className="h-24 w-auto max-w-full object-contain md:h-28"
+        sizes="200px"
+      />
     </div>
   );
 }
@@ -33,7 +56,14 @@ export function TestimonialsSection() {
         <div className="grid gap-6 md:grid-cols-3">
           {testimonials.items.map((item, index) => (
             <article key={item.profile} className="card-soft text-center">
-              <AvatarPlaceholder index={index} />
+              {"image" in item && item.image ? (
+                <TestimonialAvatar
+                  image={item.image}
+                  imageAlt={item.imageAlt ?? item.profile}
+                />
+              ) : (
+                <AvatarPlaceholder index={index} />
+              )}
               <p className="mt-2 text-xs font-medium text-rose-dark">
                 {item.profile}
               </p>
