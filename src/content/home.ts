@@ -1,6 +1,6 @@
 export const site = {
   name: "星とあなたの物語",
-  tagline: "Hoshiyomi · Urana",
+  tagline: "Avec 七海",
   description:
     "タロット・西洋占星術・数秘術で、あなたらしい未来への道しるべをお届けします。",
 } as const;
