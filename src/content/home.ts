@@ -81,10 +81,12 @@ export const testimonials = {
   heading: "お客様の声",
   items: [
     {
-      profile: "20代・女性",
+      profile: "50代・男性",
       quote:
         "言葉がとても温かくて、涙が出ました。自分を責めていたことが少しほぐれて、前に進めそうです。",
       rating: 5,
+      image: "/customer3.png",
+      imageAlt: "50代男性のお客様イラスト",
     },
     {
       profile: "30代・女性",
@@ -99,6 +101,8 @@ export const testimonials = {
       quote:
         "数秘術が初めてでしたが、自分の強みがはっきりわかり、仕事の方向性を決めるきっかけになりました。",
       rating: 5,
+      image: "/customer2-Photoroom.png",
+      imageAlt: "40代女性のお客様イラスト",
     },
   ],
 } as const;

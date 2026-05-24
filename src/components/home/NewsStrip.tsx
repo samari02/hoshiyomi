@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { SiteContainer } from "@/components/layout/SiteContainer";
 import { news } from "@/content/home";
 
 export function NewsStrip() {
   return (
     <section className="border-y border-border bg-white/60">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 sm:flex-row sm:items-center sm:justify-between md:px-6">
-        <div className="flex flex-wrap items-center gap-3 text-sm">
+      <SiteContainer className="flex flex-col gap-2 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap items-center gap-3 text-sm xl:text-base">
           <span className="rounded-full bg-lavender-light px-3 py-0.5 text-xs font-medium text-lavender">
             お知らせ
           </span>
@@ -14,11 +15,11 @@ export function NewsStrip() {
         </div>
         <Link
           href={news.href}
-          className="shrink-0 text-sm text-rose-dark hover:underline"
+          className="shrink-0 text-sm text-rose-dark hover:underline xl:text-base"
         >
           {news.viewAll} →
         </Link>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

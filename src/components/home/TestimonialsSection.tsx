@@ -1,19 +1,7 @@
 import Image from "next/image";
+import { SiteContainer } from "@/components/layout/SiteContainer";
 import { testimonials } from "@/content/home";
 import { SectionHeading } from "@/components/ui/StarDecor";
-
-function AvatarPlaceholder({ index }: { index: number }) {
-  const hues = ["#e8d4f0", "#f5dce8", "#dce8f5"];
-  return (
-    <div
-      className="mx-auto flex h-16 w-16 items-center justify-center rounded-full text-2xl"
-      style={{ backgroundColor: hues[index % hues.length] }}
-      aria-hidden
-    >
-      ✧
-    </div>
-  );
-}
 
 function TestimonialAvatar({
   image,
@@ -23,15 +11,15 @@ function TestimonialAvatar({
   imageAlt: string;
 }) {
   return (
-    <div className="mx-auto flex h-28 w-full items-center justify-center md:h-32">
+    <div className="mx-auto flex h-32 w-full items-center justify-center md:h-36 xl:h-40">
       <Image
         src={image}
         alt={imageAlt}
-        width={1822}
-        height={1278}
+        width={1254}
+        height={1254}
         unoptimized
-        className="h-24 w-auto max-w-full object-contain md:h-28"
-        sizes="200px"
+        className="h-28 w-auto max-w-full object-contain md:h-32 xl:h-36 2xl:h-40"
+        sizes="(max-width: 1280px) 30vw, 280px"
       />
     </div>
   );
@@ -49,32 +37,28 @@ function StarRating({ count }: { count: number }) {
 
 export function TestimonialsSection() {
   return (
-    <section id="voices" className="px-4 py-16 md:px-6 md:py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="voices" className="py-16 md:py-24 xl:py-28">
+      <SiteContainer>
         <SectionHeading withStars={false}>{testimonials.heading}</SectionHeading>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {testimonials.items.map((item, index) => (
-            <article key={item.profile} className="card-soft text-center">
-              {"image" in item && item.image ? (
-                <TestimonialAvatar
-                  image={item.image}
-                  imageAlt={item.imageAlt ?? item.profile}
-                />
-              ) : (
-                <AvatarPlaceholder index={index} />
-              )}
-              <p className="mt-2 text-xs font-medium text-rose-dark">
+        <div className="grid gap-6 md:grid-cols-3 md:gap-8 xl:gap-10">
+          {testimonials.items.map((item) => (
+            <article
+              key={item.profile}
+              className="card-soft px-4 py-6 text-center xl:px-6 xl:py-8"
+            >
+              <TestimonialAvatar image={item.image} imageAlt={item.imageAlt} />
+              <p className="mt-2 text-xs font-medium text-rose-dark md:text-sm">
                 {item.profile}
               </p>
-              <blockquote className="mt-4 text-sm leading-7 text-muted">
+              <blockquote className="mt-4 text-sm leading-7 text-muted xl:text-base xl:leading-8">
                 「{item.quote}」
               </blockquote>
               <StarRating count={item.rating} />
             </article>
           ))}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { SiteContainer } from "@/components/layout/SiteContainer";
 import { hero, navLinks, site } from "@/content/home";
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:px-6">
+      <SiteContainer className="flex items-center justify-between gap-4 py-4">
         <Link href="/" className="group flex shrink-0 items-center gap-2">
           <span className="text-2xl text-gold transition-transform group-hover:scale-110">
             ☽
@@ -37,11 +38,11 @@ export function SiteHeader() {
         <Link href="#reserve" className="btn-primary shrink-0 px-5 py-2.5 text-xs md:text-sm">
           {hero.reserveCta}
         </Link>
-      </div>
+      </SiteContainer>
 
       {/* Mobile nav */}
       <nav
-        className="flex gap-4 overflow-x-auto border-t border-border/60 px-4 py-2 lg:hidden"
+        className="flex gap-4 overflow-x-auto border-t border-border/60 px-4 py-2 sm:px-6 lg:hidden"
         aria-label="モバイルナビゲーション"
       >
         {navLinks.map((link) => (
