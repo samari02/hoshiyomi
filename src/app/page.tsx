@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="w-full">
         <HeroSection />
         <NewsStrip />
         <ServiceMenuSection />

@@ -42,18 +42,20 @@ export function SiteHeader() {
 
       {/* Mobile nav */}
       <nav
-        className="flex gap-4 overflow-x-auto border-t border-border/60 px-4 py-2 sm:px-6 lg:hidden"
+        className="border-t border-border/60 lg:hidden"
         aria-label="モバイルナビゲーション"
       >
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="shrink-0 whitespace-nowrap text-xs text-muted hover:text-rose-dark"
-          >
-            {link.label}
-          </Link>
-        ))}
+        <SiteContainer className="flex gap-4 overflow-x-auto py-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="shrink-0 whitespace-nowrap text-xs text-muted hover:text-rose-dark"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </SiteContainer>
       </nav>
     </header>
   );
