@@ -23,7 +23,10 @@ Copy `.env.example` to `.env.local` and set:
 2. Go to **SQL Editor** → **New query**
 3. Run **`supabase/01_create.sql`** first (creates table + RPC)
 4. Then run **`supabase/02_seed.sql`** (demo data)
-5. Test: [http://localhost:3003/r/demo-hoshiyomi-test](http://localhost:3003/r/demo-hoshiyomi-test)
+5. Run **`supabase/03_admin_rls.sql`** (admin permissions for Nanami login)
+6. Create Nanami's account in Supabase → **Authentication → Users → Add user**
+7. Test: [http://localhost:3003/r/demo-hoshiyomi-test](http://localhost:3003/r/demo-hoshiyomi-test)
+8. Admin: [http://localhost:3003/admin/login](http://localhost:3003/admin/login)
 
 > If you see `relation "public.readings" does not exist`, you ran step 4 before step 3.
 

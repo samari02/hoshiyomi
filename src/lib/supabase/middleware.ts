@@ -2,9 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({
-    request,
-  });
+  let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -15,12 +13,8 @@ export async function updateSession(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value),
-          );
-          supabaseResponse = NextResponse.next({
-            request,
-          });
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+          supabaseResponse = NextResponse.next({ request });
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options),
           );
@@ -29,7 +23,27 @@ export async function updateSession(request: NextRequest) {
     },
   );
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { pathname } = request.nextUrl;
+  const isAdminRoute = pathname.startsWith("/admin");
+  const isLoginRoute = pathname === "/admin/login";
+
+  if (isAdminRoute && !isLoginRoute && !user) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = "/admin/login";
+    loginUrl.searchParams.set("next", pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  if (isLoginRoute && user) {
+    const readingsUrl = request.nextUrl.clone();
+    readingsUrl.pathname = "/admin/readings";
+    readingsUrl.search = "";
+    return NextResponse.redirect(readingsUrl);
+  }
 
   return supabaseResponse;
 }
