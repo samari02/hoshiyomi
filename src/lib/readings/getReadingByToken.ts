@@ -1,17 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
-import type { Reading, ReadingContent } from "@/types/reading";
-
-function parseReadingContent(raw: unknown): ReadingContent {
-  if (
-    raw &&
-    typeof raw === "object" &&
-    "sections" in raw &&
-    Array.isArray((raw as ReadingContent).sections)
-  ) {
-    return raw as ReadingContent;
-  }
-  return { sections: [] };
-}
+import { parseReadingContent } from "@/lib/readings/parseReadingContent";
+import type { Reading } from "@/types/reading";
 
 export async function getReadingByToken(token: string): Promise<Reading | null> {
   const supabase = await createClient();

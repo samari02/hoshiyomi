@@ -1,0 +1,3 @@
+# Sign images for client reading pages
+# Add PNG files named: aries.png, taurus.png, gemini.png, etc.
+# Until added, the page shows the zodiac symbol (♌ ♓ …) as fallback.

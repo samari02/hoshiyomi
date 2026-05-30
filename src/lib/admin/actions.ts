@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { buildReadingContent } from "@/lib/readings/parseReadingContent";
 import { createClient } from "@/lib/supabase/server";
 
 export type CreateReadingInput = {
@@ -11,9 +12,27 @@ export type CreateReadingInput = {
   birthPlace: string;
   title: string;
   personalMessage: string;
-  sunBody: string;
-  moonBody: string;
-  risingBody: string;
+  sunSignKey: string;
+  sunSummary: string;
+  sunDetail: string;
+  moonSignKey: string;
+  moonSummary: string;
+  moonDetail: string;
+  risingSignKey: string;
+  risingSummary: string;
+  risingDetail: string;
+  sunEnergy: string;
+  moonEnergy: string;
+  risingEnergy: string;
+  loveTheme: string;
+  workTheme: string;
+  moneyTheme: string;
+  talent1Title: string;
+  talent1Body: string;
+  talent2Title: string;
+  talent2Body: string;
+  talent3Title: string;
+  talent3Body: string;
   status: "draft" | "ready";
 };
 
@@ -33,13 +52,7 @@ async function requireUser() {
 export async function createReading(input: CreateReadingInput) {
   const supabase = await requireUser();
 
-  const content = {
-    sections: [
-      { key: "sun", title: "太陽星座", body: input.sunBody },
-      { key: "moon", title: "月星座", body: input.moonBody },
-      { key: "rising", title: "上昇星座", body: input.risingBody },
-    ].filter((section) => section.body.trim().length > 0),
-  };
+  const content = buildReadingContent(input);
 
   const { data, error } = await supabase
     .from("readings")
